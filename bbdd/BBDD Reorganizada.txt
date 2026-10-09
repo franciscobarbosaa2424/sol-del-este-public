@@ -1,0 +1,93 @@
+BBDD Reorganizada
+
+USE webapp_ventas2;
+
+CREATE TABLE moneda (
+MonedaId INT AUTO_INCREMENT PRIMARY KEY,
+MonedaNombre VARCHAR(35),
+MonedaSimbolo VARCHAR(5)
+);
+
+CREATE TABLE categoria (
+CategoriaId INT AUTO_INCREMENT PRIMARY KEY,
+CategoriaNombre VARCHAR(150),
+CategoriaSlug VARCHAR(150)
+);
+
+CREATE TABLE subcategoria (
+SubcategoriaId INT AUTO_INCREMENT PRIMARY KEY,
+CategoriaId INT,
+SubCategoriaNombre VARCHAR(150),
+SubCategoriaSlug VARCHAR(150),
+FOREIGN KEY (CategoriaId) REFERENCES categoria(CategoriaId)
+);
+
+CREATE TABLE producto (
+ProductoId VARCHAR(27) PRIMARY KEY,
+ProductoNombre VARCHAR(150),
+ProductoDescripcion TEXT,
+ProductoMarca VARCHAR(150),
+ProductoModelo VARCHAR(150),
+ProductoColor VARCHAR(50),
+SubCategoriaId INT,
+ProductoStock DECIMAL(12,2),
+MonedaId INT,
+ProductoSubtotal DECIMAL(12,2),
+ProductoEnvio DECIMAL(12,2),
+ProductoTotal DECIMAL(12,2) AS (ProductoSubtotal + ProductoEnvio) STORED,
+ProductoSlug VARCHAR(150),
+FOREIGN KEY (SubCategoriaId) REFERENCES subcategoria(SubcategoriaId),
+FOREIGN KEY (MonedaId) REFERENCES moneda(MonedaId)
+);
+
+CREATE TABLE descuento ( 
+DescuentoId INT AUTO_INCREMENT PRIMARY KEY,
+ProductoId VARCHAR(27),
+DescuentoPorcentaje DECIMAL(5,2),
+DescuentoFechaInicio DATETIME,
+DescuentoFechaFin DATETIME,
+TipoPromo VARCHAR(50),
+FOREIGN KEY (ProductoId) REFERENCES producto(ProductoId)
+);
+
+CREATE TABLE productoImagen (
+ProductoImagenId VARCHAR(27) PRIMARY KEY,
+ProductoId VARCHAR(27),
+ProductoImagenURL TEXT,
+ProductoImagenNombre VARCHAR(300),
+FOREIGN KEY (ProductoId) REFERENCES producto(ProductoId)
+);
+
+CREATE TABLE rol(
+RolId INT AUTO_INCREMENT PRIMARY KEY,
+RolNombre VARCHAR(100)
+);
+
+CREATE TABLE usuario(
+UsuarioId VARCHAR(27) PRIMARY KEY,
+UsuarioNombre VARCHAR(150),
+UsuarioCorreo VARCHAR(100),
+UsuarioContrasena VARCHAR(100),
+UsuarioContacto VARCHAR(25),
+RolId INT,
+FOREIGN KEY (RolId) REFERENCES rol(RolId)
+);
+
+
+
+CREATE INDEX idx_producto_subcategoria
+ON producto (SubCategoriaId);
+
+CREATE INDEX idx_subcategoria_categoria
+ON subcategoria (CategoriaId);
+
+ALTER TABLE categoria ADD CategoriaSlug VARCHAR(150);
+ALTER TABLE subcategoria ADD SubCategoriaSlug VARCHAR(150);
+ALTER TABLE producto ADD ProductoSlug VARCHAR(150);
+
+
+
+
+
+
+

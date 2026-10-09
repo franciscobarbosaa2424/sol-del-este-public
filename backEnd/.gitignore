@@ -1,0 +1,6 @@
+dist/
+node_modules/
+public/img/
+config/
+.env
+.vercel
