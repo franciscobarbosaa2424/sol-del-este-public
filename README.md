@@ -23,3 +23,4 @@ Full-stack web application for a handmade knitwear store, developed by Francisco
 
 3. Run `npm install` in both the backend and frontend folders.
 4. Start the backend and frontend in separate terminals by running `npm run dev` in each folder.
+5. User admin credentials for login: portfolio@portfolio.com - portfolio123.
