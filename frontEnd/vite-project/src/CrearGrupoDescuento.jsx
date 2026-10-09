@@ -278,7 +278,7 @@ return(
 
 
           <input type="time" 
-          name="DescuentoHoraInicio"
+          name="DescuentoHoraFin"
           value={formulario.DescuentoHoraInicio} 
           onChange={handleChange}
           className="px-3 py-2 border rounded-lg focus:outline-none focus:ring"/>
@@ -289,14 +289,14 @@ return(
   </div>
   <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
           <input type="date" 
-          name="DescuentoFechaInicio"
+          name="DescuentoFechaFin"
           value={formulario.DescuentoFechaFin} 
           onChange={handleChange}
           className="px-3 py-2 border rounded-lg focus:outline-none focus:ring"/>
 
 
           <input type="time" 
-          name="DescuentoHoraInicio"
+          name="DescuentoHoraFin"
           value={formulario.DescuentoHoraFin} 
           onChange={handleChange}
           className="px-3 py-2 border rounded-lg focus:outline-none focus:ring"/>

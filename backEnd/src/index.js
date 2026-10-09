@@ -17,7 +17,8 @@ const app = express()
 
 const allowedOrigins = [
   "https://soldelestetejidos.com",
-  "https://www.soldelestetejidos.com"
+  "https://www.soldelestetejidos.com",
+  "http://localhost:5173"
 ];
 
 
@@ -45,7 +46,11 @@ app.use('/api/util',utilRoutes)
 app.get('/',(req,res)=>{
   res.send('<h1>Inicio cambiado</h1>')
 })
+const carpetaImagenes = fileURLToPath(
+    new URL('./public/img/', import.meta.url)
+);
 
+app.use('/img', express.static(carpetaImagenes));
 
 
 app.listen(config.PORT,'0.0.0.0' ,() => {

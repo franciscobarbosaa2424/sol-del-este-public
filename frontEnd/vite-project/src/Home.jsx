@@ -147,7 +147,7 @@ const settings = {
 <WhatsAppIcon />
 </a>
 <a href="https://wa.me/+59898758707">
-<h3>098 758 707</h3>
+<h3>092 212 572</h3>
 </a>
 </div>
 
